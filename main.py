@@ -25,22 +25,27 @@ def load(file: str):
         print(f'{e} Error opening {file}. Immediate termination of the program.', file=sys.stderr)
 
 
-if __name__ == '__main__':
-
-    dt = datetime.datetime.now().strftime("_%d_%m_%Y_%H_%M_%S")
-    new_file_name = 'NG' + dt + '.txt'
+def generate(file: str):
+    """
+    Генерирует имена и записывает их в новый файл
+    :param file:
+    :return:
+    """
     names = []
-
     for i in range(NUMBER_OF_NAMES):
-        firstName = random.choice(load(LAST_NAMES_TEMPLATE_PATH))
-        lastName = random.choice(load(FIRST_NAMES_TEMPLATE_PATH))
+        first_name = random.choice(load(LAST_NAMES_TEMPLATE_PATH))
+        last_name = random.choice(load(FIRST_NAMES_TEMPLATE_PATH))
 
-        names.append(f'The {firstName} {lastName}\n')
-
+        names.append(f'The {first_name} {last_name}\n')
     names.sort()
 
-    with open(new_file_name, 'w') as new_file:
+    with open(file, 'w') as new_file:
         for name in names:
             new_file.write(name)
 
+
+if __name__ == '__main__':
+    dt = datetime.datetime.now().strftime("_%d_%m_%Y_%H_%M_%S")
+    new_file_name = 'NG' + dt + '.txt'
+    load(new_file_name)
     shutil.move(new_file_name, OUTPUT_DIRECTORY)
