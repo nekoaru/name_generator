@@ -47,5 +47,5 @@ def generate(file: str):
 if __name__ == '__main__':
     dt = datetime.datetime.now().strftime("_%d_%m_%Y_%H_%M_%S")
     new_file_name = 'NG' + dt + '.txt'
-    load(new_file_name)
+    generate(new_file_name)
     shutil.move(new_file_name, OUTPUT_DIRECTORY)
